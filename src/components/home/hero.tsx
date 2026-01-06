@@ -1,7 +1,6 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { HeroScene } from "./hero-scene"
 import { Button } from "@/components/ui/button"
 import {
   HoverCard,
@@ -16,9 +15,6 @@ export function Hero() {
 
   return (
     <section className="relative flex min-h-[85vh] flex-col items-center justify-center overflow-hidden text-center px-4">
-      {/* 3D Фон */}
-      <HeroScene />
-      
       <div className="z-10 max-w-3xl space-y-6 animate-in fade-in zoom-in duration-1000 slide-in-from-bottom-10">
         <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
           {t("greeting")} <span className="text-primary block sm:inline">T-Way</span>

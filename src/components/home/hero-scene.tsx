@@ -61,11 +61,19 @@ function Stars(props: any) {
 }
 
 export function HeroScene() {
+
   return (
-    <div className="absolute inset-0 -z-10 h-full w-full">
+
+    <div className="fixed inset-0 -z-50 h-screen w-screen pointer-events-none">
+
       <Canvas camera={{ position: [0, 0, 1] }}>
+
         <Stars />
+
       </Canvas>
+
     </div>
+
   )
+
 }

@@ -7,6 +7,7 @@ import { routing } from '@/i18n/routing';
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { HeroScene } from "@/components/home/hero-scene";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -61,6 +62,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <HeroScene />
             <div className="relative flex min-h-screen flex-col">
               <Header />
               <main className="flex-1">{children}</main>

@@ -3,10 +3,10 @@
 import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import { Link } from "@/i18n/routing"
 import { Github, Send, ArrowRight } from "lucide-react"
 
@@ -22,13 +22,13 @@ export function Hero() {
         
         <div className="text-lg text-muted-foreground sm:text-xl max-w-2xl mx-auto leading-relaxed">
           {t("intro_start")}{" "}
-          <HoverCard>
-            <HoverCardTrigger asChild>
-              <span className="cursor-help font-semibold text-foreground underline decoration-dotted underline-offset-4 hover:text-primary transition-colors">
+          <Popover>
+            <PopoverTrigger asChild>
+              <span className="cursor-pointer font-semibold text-foreground underline decoration-dotted underline-offset-4 hover:text-primary transition-colors">
                 {t("t_shaped")}
               </span>
-            </HoverCardTrigger>
-            <HoverCardContent className="w-80 text-left">
+            </PopoverTrigger>
+            <PopoverContent className="w-80 text-left">
               <div className="space-y-2">
                 <h4 className="text-sm font-semibold">T-shaped skills</h4>
                 <p className="text-sm text-muted-foreground">
@@ -45,8 +45,8 @@ export function Hero() {
                   </a>
                 </div>
               </div>
-            </HoverCardContent>
-          </HoverCard>
+            </PopoverContent>
+          </Popover>
           {" "}{t("intro_end")}
         </div>
 

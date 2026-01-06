@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { BookWithReview } from "@/lib/types"
+import { BookWithReview, LocalizedString } from "@/lib/types"
 import { Star } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
@@ -14,15 +14,29 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
-  DialogTitle, // Добавляем DialogTitle для доступности
+  DialogTitle,
 } from "@/components/ui/dialog"
-// ScrollArea убираем, используем нативный скролл
 
 interface BookCardProps {
-  book: BookWithReview
+  book: BookWithReview;
+  locale: string;
 }
 
-export function BookCard({ book }: BookCardProps) {
+export function BookCard({ book, locale }: BookCardProps) {
+  // Хелпер для получения перевода
+  const t = (field: LocalizedString) => {
+    return field[locale as 'ru' | 'en'] || field.ru;
+  };
+  
+  // Простые переводы для UI элементов
+  const ui = {
+    read: locale === 'ru' ? 'Прочитано' : 'Read',
+    reading: locale === 'ru' ? 'Читаю' : 'Reading',
+    opinion: locale === 'ru' ? 'Моё мнение' : 'My Opinion',
+    synopsis: locale === 'ru' ? 'Конспект / Основные идеи' : 'Synopsis / Key Ideas',
+    critique: locale === 'ru' ? 'Критика' : 'Critique',
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -30,24 +44,24 @@ export function BookCard({ book }: BookCardProps) {
           <div className="relative w-full aspect-[3/4] bg-muted">
             <Image
               src={book.thumbnail}
-              alt={book.title}
+              alt={t(book.title)}
               fill
               className="object-cover transition-transform group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
             <div className="absolute top-2 right-2">
                <Badge variant={book.status === 'read' ? "default" : "secondary"}>
-                 {book.status === 'read' ? 'Прочитано' : 'Читаю'}
+                 {book.status === 'read' ? ui.read : ui.reading}
                </Badge>
             </div>
           </div>
           
           <CardHeader className="pb-2">
             <CardTitle className="text-lg leading-tight line-clamp-2 group-hover:text-primary transition-colors">
-              {book.title}
+              {t(book.title)}
             </CardTitle>
             <CardDescription className="text-sm font-medium">
-              {book.author}
+              {t(book.author)}
             </CardDescription>
           </CardHeader>
 
@@ -64,29 +78,28 @@ export function BookCard({ book }: BookCardProps) {
               ))}
             </div>
             <p className="text-sm text-muted-foreground italic line-clamp-4">
-              "{book.review}"
+              "{t(book.review)}"
             </p>
           </CardContent>
         </Card>
       </DialogTrigger>
       
       <DialogContent className="max-w-2xl w-[95vw] p-0 overflow-hidden flex flex-col h-[90vh]">
-        {/* Скрытый заголовок для доступности, так как мы рисуем свой кастомный хедер */}
-        <DialogTitle className="sr-only">{book.title}</DialogTitle>
+        <DialogTitle className="sr-only">{t(book.title)}</DialogTitle>
 
         <div className="flex-1 overflow-y-auto">
           {/* Обложка сверху */}
           <div className="relative w-full aspect-video bg-muted shrink-0">
              <Image
                 src={book.thumbnail}
-                alt={book.title}
+                alt={t(book.title)}
                 fill
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-linear-to-t from-background via-background/20 to-transparent" />
               <div className="absolute bottom-4 left-6 right-6">
-                <h2 className="text-2xl md:text-3xl font-bold text-white drop-shadow-md">{book.title}</h2>
-                <p className="text-white/90 font-medium drop-shadow-md">{book.author}</p>
+                <h2 className="text-2xl md:text-3xl font-bold text-white drop-shadow-md">{t(book.title)}</h2>
+                <p className="text-white/90 font-medium drop-shadow-md">{t(book.author)}</p>
               </div>
           </div>
 
@@ -103,17 +116,17 @@ export function BookCard({ book }: BookCardProps) {
                     />
                   ))}
                </div>
-               <Badge variant="outline" className="text-sm">{book.status === 'read' ? 'Прочитано' : 'В процессе'}</Badge>
+               <Badge variant="outline" className="text-sm">{book.status === 'read' ? ui.read : ui.reading}</Badge>
             </div>
 
             {/* Мое мнение */}
             <section className="space-y-3">
               <h3 className="font-bold text-xl flex items-center gap-2">
                 <span className="w-1.5 h-6 bg-primary rounded-full" />
-                Моё мнение
+                {ui.opinion}
               </h3>
               <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                {book.myOpinion}
+                {t(book.myOpinion)}
               </div>
             </section>
 
@@ -121,10 +134,10 @@ export function BookCard({ book }: BookCardProps) {
              <section className="space-y-3">
               <h3 className="font-bold text-xl flex items-center gap-2">
                 <span className="w-1.5 h-6 bg-secondary rounded-full" />
-                Конспект / Основные идеи
+                {ui.synopsis}
               </h3>
               <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap bg-muted/50 p-4 rounded-lg">
-                {book.synopsis}
+                {t(book.synopsis)}
               </div>
             </section>
 
@@ -132,10 +145,10 @@ export function BookCard({ book }: BookCardProps) {
             <section className="space-y-3 pb-6">
               <h3 className="font-bold text-xl flex items-center gap-2">
                 <span className="w-1.5 h-6 bg-destructive rounded-full" />
-                Критика
+                {ui.critique}
               </h3>
               <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap italic">
-                {book.critique}
+                {t(book.critique)}
               </div>
             </section>
           </div>

@@ -18,11 +18,18 @@ export interface Post {
   content: any // React node
 }
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
-  const filePath = path.join(contentDir, `${slug}.mdx`)
+// Теперь функция принимает locale
+export async function getPostBySlug(slug: string, locale: string): Promise<Post | null> {
+  // Сначала пробуем найти файл с локалью (например, hello-world.en.mdx)
+  let filePath = path.join(contentDir, `${slug}.${locale}.mdx`)
   
+  // Если файла нет, можно попробовать дефолтный (без локали) или вернуть null
   if (!fs.existsSync(filePath)) {
-    return null
+    // Fallback: пробуем найти .mdx без суффикса (как дефолт)
+    filePath = path.join(contentDir, `${slug}.mdx`)
+    if (!fs.existsSync(filePath)) {
+      return null
+    }
   }
 
   const fileContent = fs.readFileSync(filePath, 'utf8')
@@ -46,19 +53,26 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   }
 }
 
-export async function getAllPosts(): Promise<Post[]> {
+export async function getAllPosts(locale: string): Promise<Post[]> {
   if (!fs.existsSync(contentDir)) {
     return []
   }
 
   const files = fs.readdirSync(contentDir)
   const posts: Post[] = []
-
+  
+  // Собираем уникальные слаги
+  const slugs = new Set<string>()
+  
   for (const file of files) {
     if (!file.endsWith('.mdx')) continue
-    
-    const slug = file.replace('.mdx', '')
-    const post = await getPostBySlug(slug)
+    // hello-world.ru.mdx -> hello-world
+    const slug = file.replace(/\.(ru|en)\.mdx$/, '').replace(/\.mdx$/, '')
+    slugs.add(slug)
+  }
+
+  for (const slug of Array.from(slugs)) {
+    const post = await getPostBySlug(slug, locale)
     if (post) {
       posts.push(post)
     }

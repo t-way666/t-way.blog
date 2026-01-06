@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { setRequestLocale } from "next-intl/server"
+import { setRequestLocale, getTranslations } from "next-intl/server"
 
 export default async function BlogPage({
   params,
@@ -16,16 +16,13 @@ export default async function BlogPage({
 }) {
   const { locale } = await params
   setRequestLocale(locale)
+  const t = await getTranslations("Blog")
 
-  const posts = await getAllPosts()
-  
-  // В будущем можно фильтровать по языку: 
-  // const filteredPosts = posts.filter(p => p.metadata.lang === locale)
-  // Но пока показываем все.
+  const posts = await getAllPosts(locale)
 
   return (
     <div className="container mx-auto py-10 px-4 max-w-3xl">
-      <h1 className="text-4xl font-bold tracking-tight mb-8">Блог</h1>
+      <h1 className="text-4xl font-bold tracking-tight mb-8">{t("title")}</h1>
       
       <div className="grid gap-6">
         {posts.map((post) => (

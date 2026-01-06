@@ -1,13 +1,15 @@
 import { getPostBySlug, getAllPosts } from "@/lib/blog"
 import { notFound } from "next/navigation"
-import { setRequestLocale } from "next-intl/server"
+import { setRequestLocale, getTranslations } from "next-intl/server"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
 import { ArrowLeft } from "lucide-react"
 import { Metadata } from "next"
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts()
+  // Для статики генерируем пути для всех языков, предполагая что слаги одинаковые
+  // Но в реальном проекте тут нужно быть аккуратнее. Пока оставим 'ru' как дефолт для списка слагов.
+  const posts = await getAllPosts('ru') 
   return posts.map((post) => ({
     slug: post.slug,
   }))
@@ -18,8 +20,8 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>
 }): Promise<Metadata> {
-  const { slug } = await params
-  const post = await getPostBySlug(slug)
+  const { slug, locale } = await params
+  const post = await getPostBySlug(slug, locale)
 
   if (!post) {
     return {}
@@ -33,7 +35,6 @@ export async function generateMetadata({
       description: post.metadata.summary,
       type: 'article',
       publishedTime: post.metadata.date,
-      // images: ['/some-default-blog-image.png'], // Можно добавить позже
     },
   }
 }
@@ -45,8 +46,9 @@ export default async function BlogPostPage({
 }) {
   const { locale, slug } = await params
   setRequestLocale(locale)
+  const t = await getTranslations("Blog")
 
-  const post = await getPostBySlug(slug)
+  const post = await getPostBySlug(slug, locale)
 
   if (!post) {
     notFound()
@@ -57,7 +59,7 @@ export default async function BlogPostPage({
       <Link href="/blog">
         <Button variant="ghost" className="mb-8 pl-0 hover:bg-transparent hover:text-primary">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Назад к блогу
+          {t("back")}
         </Button>
       </Link>
 

@@ -33,10 +33,10 @@ export function Footer() {
             <span className="sr-only">GitHub</span>
           </a>
           <a
-            href="https://t.me/your_telegram" 
+            href="https://t.me/T_w_a_y" 
             target="_blank"
             rel="noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-[#24A1DE] transition-colors"
           >
             <Send className="h-5 w-5" />
             <span className="sr-only">Telegram</span>

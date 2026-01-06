@@ -3,11 +3,12 @@
     "title": "Hello world!",
     "subtitle": "Welcome to my blog",
     "greeting": "I'm",
-    "intro_start": "A frontend developer and a ",
+    "intro_start": "Frontend Developer (and more) and ",
     "t_shaped": "T-shaped person",
     "t_shaped_desc": "Someone with deep knowledge in one area (the vertical bar) and a broad base of general supporting knowledge in other areas (the horizontal bar).",
-    "intro_end": " on a path of continuous learning.",
-    "read_blog": "Read Blog"
+    "intro_end": ". I code interfaces, tweak configs, and love great design.",
+    "read_blog": "Read Blog",
+    "contact": "Telegram"
   },
   "Nav": {
     "home": "Home",
@@ -18,6 +19,10 @@
   "Books": {
     "title": "Bookshelf",
     "description": "This is not just a reading list. These are ideas that shaped my worldview. Here are my honest reviews, not just a copy-paste from the cover."
+  },
+  "Blog": {
+    "title": "Blog",
+    "back": "Back to blog"
   },
   "Theme": {
     "light": "Light",

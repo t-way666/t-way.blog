@@ -57,16 +57,22 @@ export function Hero() {
             </Button>
           </Link>
           <a href="https://github.com/wayer" target="_blank" rel="noreferrer">
-            <Button variant="outline" size="lg" className="rounded-full px-6">
+            <Button variant="default" size="lg" className="rounded-full px-6">
               <Github className="mr-2 h-4 w-4" />
               GitHub
             </Button>
           </a>
-          {/* Можно добавить Телеграм, если есть ссылка */}
-          {/* <Button variant="ghost" size="lg" className="rounded-full">
-            <Send className="mr-2 h-4 w-4" />
-            Contact
-          </Button> */}
+          <a href="https://t.me/T_w_a_y" target="_blank" rel="noreferrer">
+            <Button 
+              variant="default" 
+              size="lg" 
+              className="rounded-full px-6 bg-[#24A1DE] hover:bg-[#24A1DE]/90 text-white border-0"
+            >
+              <Send className="mr-2 h-4 w-4" />
+              {t("contact")}
+            </Button>
+          </a>
+
         </div>
       </div>
     </section>

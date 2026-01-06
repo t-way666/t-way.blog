@@ -56,7 +56,7 @@ export function Hero() {
               {t("read_blog")}
             </Button>
           </Link>
-          <a href="https://github.com/wayer" target="_blank" rel="noreferrer">
+          <a href="https://github.com/t-way666/" target="_blank" rel="noreferrer">
             <Button variant="default" size="lg" className="rounded-full px-6">
               <Github className="mr-2 h-4 w-4" />
               GitHub

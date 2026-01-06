@@ -24,7 +24,7 @@ export function Footer() {
         </div>
         <div className="flex items-center gap-4">
           <a
-            href="https://github.com/wayer"
+            href="https://github.com/t-way666/"
             target="_blank"
             rel="noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"

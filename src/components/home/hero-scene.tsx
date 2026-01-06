@@ -6,7 +6,7 @@ import { Points, PointMaterial } from '@react-three/drei'
 import { useTheme } from 'next-themes'
 
 function Stars(props: any) {
-  const ref = useRef<any>()
+  const ref = useRef<any>(null)
   
   // Генерируем точки вручную (чистый JS)
   const sphere = useMemo(() => {

@@ -1,6 +1,6 @@
 import { MY_BOOKS } from "@/lib/types"
 import { BookCard } from "@/components/books/book-card"
-import { setRequestLocale } from "next-intl/server"
+import { setRequestLocale, getTranslations } from "next-intl/server"
 
 export default async function BooksPage({
   params,
@@ -9,14 +9,14 @@ export default async function BooksPage({
 }) {
   const { locale } = await params
   setRequestLocale(locale)
+  const t = await getTranslations("Books")
 
   return (
     <div className="container mx-auto py-10 px-4">
       <div className="flex flex-col gap-4 mb-8">
-        <h1 className="text-4xl font-bold tracking-tight">Книжная полка</h1>
+        <h1 className="text-4xl font-bold tracking-tight">{t("title")}</h1>
         <p className="text-muted-foreground text-lg max-w-2xl">
-          Это не просто список литературы. Это идеи, которые сформировали мое мировоззрение.
-          Здесь мои честные отзывы, а не копипаста с обложки.
+          {t("description")}
         </p>
       </div>
 

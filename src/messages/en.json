@@ -15,6 +15,10 @@
     "books": "Books",
     "about": "About"
   },
+  "Books": {
+    "title": "Bookshelf",
+    "description": "This is not just a reading list. These are ideas that shaped my worldview. Here are my honest reviews, not just a copy-paste from the cover."
+  },
   "Theme": {
     "light": "Light",
     "dark": "Dark",

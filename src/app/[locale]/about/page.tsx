@@ -2,18 +2,7 @@ import { TIMELINE_DATA, HOBBIES } from "@/lib/types"
 import { TimelineItem } from "@/components/timeline/timeline-item"
 import { setRequestLocale } from "next-intl/server"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Pencil, Music, Clapperboard, BookOpen, Terminal } from "lucide-react"
-
-const getHobbyIcon = (iconName: string) => {
-  switch (iconName) {
-    case 'draw': return <Pencil className="w-8 h-8 mb-2 text-primary" />;
-    case 'music': return <Music className="w-8 h-8 mb-2 text-primary" />;
-    case 'video': return <Clapperboard className="w-8 h-8 mb-2 text-primary" />;
-    case 'book': return <BookOpen className="w-8 h-8 mb-2 text-primary" />;
-    case 'linux': return <Terminal className="w-8 h-8 mb-2 text-primary" />;
-    default: return <Pencil className="w-8 h-8 mb-2 text-primary" />;
-  }
-};
+import { Icon } from "@/components/ui/icon"
 
 export default async function AboutPage({
   params,
@@ -53,7 +42,7 @@ export default async function AboutPage({
           {HOBBIES.map((hobby, idx) => (
             <Card key={idx} className="hover:bg-muted/50 transition-colors text-center">
               <CardHeader className="flex flex-col items-center pb-2">
-                {getHobbyIcon(hobby.icon)}
+                <Icon name={hobby.icon} className="w-8 h-8 mb-2 text-primary" />
                 <CardTitle className="text-base">{t(hobby.title)}</CardTitle>
               </CardHeader>
               <CardContent className="pb-4">

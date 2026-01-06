@@ -1,37 +1,13 @@
 import { TimelineItem as TimelineItemType } from "@/lib/types"
-import { 
-  Baby, 
-  School, 
-  Plane, 
-  Briefcase, 
-  Code, 
-  Terminal, 
-  Target, 
-  TrendingUp 
-} from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
+import { Icon } from "@/components/ui/icon"
 
 interface TimelineProps {
   item: TimelineItemType;
   locale: string;
   isLast?: boolean;
 }
-
-const getIcon = (iconName: string) => {
-  switch (iconName) {
-    case 'baby': return <Baby className="w-5 h-5" />;
-    case 'school': return <School className="w-5 h-5" />;
-    case 'plane': return <Plane className="w-5 h-5" />;
-    case 'sales': return <TrendingUp className="w-5 h-5" />;
-    case 'work': return <Briefcase className="w-5 h-5" />;
-    case 'code': return <Code className="w-5 h-5" />;
-    case 'linux': return <Terminal className="w-5 h-5" />;
-    case 'target': return <Target className="w-5 h-5" />;
-    default: return <Code className="w-5 h-5" />;
-  }
-};
 
 export function TimelineItem({ item, locale, isLast }: TimelineProps) {
   const t = (field: any) => field[locale as 'ru' | 'en'] || field.ru;
@@ -52,7 +28,7 @@ export function TimelineItem({ item, locale, isLast }: TimelineProps) {
         <CardHeader className="pb-2">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-1">
              <div className="flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider">
-                {getIcon(item.icon)}
+                <Icon name={item.icon} className="w-5 h-5" />
                 {item.year}
              </div>
           </div>

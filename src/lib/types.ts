@@ -19,10 +19,15 @@ export interface MyBookEntry {
 
 export type BookWithReview = MyBookEntry;
 
+// --- ICONS ---
+export type AppIconName = 
+  | 'baby' | 'school' | 'plane' | 'code' | 'work' | 'sales' | 'linux' | 'target' // Timeline
+  | 'draw' | 'music' | 'video' | 'book'; // Hobbies
+
 // --- TIMELINE TYPES ---
 export interface TimelineItem {
   year: string;
-  icon: 'baby' | 'school' | 'plane' | 'code' | 'work' | 'sales' | 'linux' | 'target';
+  icon: AppIconName;
   title: LocalizedString;
   description: LocalizedString;
   tags?: string[];
@@ -31,7 +36,7 @@ export interface TimelineItem {
 export interface HobbyItem {
   title: LocalizedString;
   description: LocalizedString;
-  icon: 'draw' | 'music' | 'video' | 'book' | 'linux';
+  icon: AppIconName;
 }
 
 // --- DATA ---

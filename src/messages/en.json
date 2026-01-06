@@ -1,0 +1,23 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "subtitle": "Welcome to my blog"
+  },
+  "Nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "books": "Books",
+    "about": "About"
+  },
+  "Theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "toggle": "Toggle theme"
+  },
+  "Language": {
+    "ru": "Russian",
+    "en": "English",
+    "toggle": "Toggle language"
+  }
+}

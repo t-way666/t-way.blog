@@ -20,12 +20,19 @@ async function fetchFromGoogle(params: string): Promise<GoogleBookData | null> {
     }
 
     const volumeInfo = data.items[0].volumeInfo;
+    
+    // Хак для получения качественной картинки: меняем zoom=1 на zoom=0
+    const rawThumbnail = volumeInfo.imageLinks?.thumbnail;
+    const thumbnail = rawThumbnail 
+      ? rawThumbnail.replace("http://", "https://").replace("&zoom=1", "&zoom=0")
+      : "https://placehold.co/400x600?text=No+Cover";
+
     return {
       id: data.items[0].id,
       title: volumeInfo.title,
       authors: volumeInfo.authors || [],
       description: volumeInfo.description || "",
-      thumbnail: volumeInfo.imageLinks?.thumbnail?.replace("http://", "https://") || "https://placehold.co/400x600?text=No+Cover",
+      thumbnail: thumbnail,
       publishedDate: volumeInfo.publishedDate,
       pageCount: volumeInfo.pageCount,
       categories: volumeInfo.categories,

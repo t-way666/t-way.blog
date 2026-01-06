@@ -9,8 +9,18 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'books.google.com' },
       { protocol: 'https', hostname: 'books.googleusercontent.com' },
-      { protocol: 'https', hostname: 'placehold.co' },
-      { protocol: 'https', hostname: 'cv0.litres.ru' },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'covers.openlibrary.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cv0.litres.ru',
+      },
       { protocol: 'https', hostname: 'cv1.litres.ru' },
       { protocol: 'https', hostname: 'cv2.litres.ru' },
       { protocol: 'https', hostname: 'cv3.litres.ru' },

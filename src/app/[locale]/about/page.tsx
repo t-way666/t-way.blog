@@ -4,6 +4,17 @@ import { setRequestLocale } from "next-intl/server"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Pencil, Music, Clapperboard, BookOpen, Terminal } from "lucide-react"
 
+const getHobbyIcon = (iconName: string) => {
+  switch (iconName) {
+    case 'draw': return <Pencil className="w-8 h-8 mb-2 text-primary" />;
+    case 'music': return <Music className="w-8 h-8 mb-2 text-primary" />;
+    case 'video': return <Clapperboard className="w-8 h-8 mb-2 text-primary" />;
+    case 'book': return <BookOpen className="w-8 h-8 mb-2 text-primary" />;
+    case 'linux': return <Terminal className="w-8 h-8 mb-2 text-primary" />;
+    default: return <Pencil className="w-8 h-8 mb-2 text-primary" />;
+  }
+};
+
 export default async function AboutPage({
   params,
 }: {
@@ -13,17 +24,6 @@ export default async function AboutPage({
   setRequestLocale(locale)
 
   const t = (field: any) => field[locale as 'ru' | 'en'] || field.ru;
-
-  const getHobbyIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'draw': return <Pencil className="w-8 h-8 mb-2 text-primary" />;
-      case 'music': return <Music className="w-8 h-8 mb-2 text-primary" />;
-      case 'video': return <Clapperboard className="w-8 h-8 mb-2 text-primary" />;
-      case 'book': return <BookOpen className="w-8 h-8 mb-2 text-primary" />;
-      case 'linux': return <Terminal className="w-8 h-8 mb-2 text-primary" />;
-      default: return <Pencil className="w-8 h-8 mb-2 text-primary" />;
-    }
-  };
 
   return (
     <div className="container mx-auto py-10 px-4 max-w-3xl">

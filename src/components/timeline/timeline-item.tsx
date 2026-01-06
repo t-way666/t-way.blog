@@ -19,22 +19,22 @@ interface TimelineProps {
   isLast?: boolean;
 }
 
+const getIcon = (iconName: string) => {
+  switch (iconName) {
+    case 'baby': return <Baby className="w-5 h-5" />;
+    case 'school': return <School className="w-5 h-5" />;
+    case 'plane': return <Plane className="w-5 h-5" />;
+    case 'sales': return <TrendingUp className="w-5 h-5" />;
+    case 'work': return <Briefcase className="w-5 h-5" />;
+    case 'code': return <Code className="w-5 h-5" />;
+    case 'linux': return <Terminal className="w-5 h-5" />;
+    case 'target': return <Target className="w-5 h-5" />;
+    default: return <Code className="w-5 h-5" />;
+  }
+};
+
 export function TimelineItem({ item, locale, isLast }: TimelineProps) {
   const t = (field: any) => field[locale as 'ru' | 'en'] || field.ru;
-
-  const getIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'baby': return <Baby className="w-5 h-5" />;
-      case 'school': return <School className="w-5 h-5" />;
-      case 'plane': return <Plane className="w-5 h-5" />;
-      case 'sales': return <TrendingUp className="w-5 h-5" />;
-      case 'work': return <Briefcase className="w-5 h-5" />;
-      case 'code': return <Code className="w-5 h-5" />;
-      case 'linux': return <Terminal className="w-5 h-5" />;
-      case 'target': return <Target className="w-5 h-5" />;
-      default: return <Code className="w-5 h-5" />;
-    }
-  };
 
   return (
     <div className="relative pl-8 md:pl-10 pb-8 group">

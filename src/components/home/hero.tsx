@@ -1,0 +1,78 @@
+"use client"
+
+import { useTranslations } from "next-intl"
+import { HeroScene } from "./hero-scene"
+import { Button } from "@/components/ui/button"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+import { Link } from "@/i18n/routing"
+import { Github, Send, ArrowRight } from "lucide-react"
+
+export function Hero() {
+  const t = useTranslations("HomePage")
+
+  return (
+    <section className="relative flex min-h-[85vh] flex-col items-center justify-center overflow-hidden text-center px-4">
+      {/* 3D Фон */}
+      <HeroScene />
+      
+      <div className="z-10 max-w-3xl space-y-6 animate-in fade-in zoom-in duration-1000 slide-in-from-bottom-10">
+        <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
+          {t("greeting")} <span className="text-primary block sm:inline">T-Way</span>
+        </h1>
+        
+        <div className="text-lg text-muted-foreground sm:text-xl max-w-2xl mx-auto leading-relaxed">
+          {t("intro_start")}{" "}
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <span className="cursor-help font-semibold text-foreground underline decoration-dotted underline-offset-4 hover:text-primary transition-colors">
+                {t("t_shaped")}
+              </span>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80 text-left">
+              <div className="space-y-2">
+                <h4 className="text-sm font-semibold">T-shaped skills</h4>
+                <p className="text-sm text-muted-foreground">
+                  {t("t_shaped_desc")}
+                </p>
+                <div className="flex items-center pt-2">
+                  <a 
+                    href="https://en.wikipedia.org/wiki/T-shaped_skills" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="text-xs text-primary hover:underline flex items-center"
+                  >
+                    Wikipedia <ArrowRight className="ml-1 h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+          {" "}{t("intro_end")}
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+          <Link href="/blog">
+            <Button size="lg" className="rounded-full px-8">
+              {t("read_blog")}
+            </Button>
+          </Link>
+          <a href="https://github.com/wayer" target="_blank" rel="noreferrer">
+            <Button variant="outline" size="lg" className="rounded-full px-6">
+              <Github className="mr-2 h-4 w-4" />
+              GitHub
+            </Button>
+          </a>
+          {/* Можно добавить Телеграм, если есть ссылка */}
+          {/* <Button variant="ghost" size="lg" className="rounded-full">
+            <Send className="mr-2 h-4 w-4" />
+            Contact
+          </Button> */}
+        </div>
+      </div>
+    </section>
+  )
+}

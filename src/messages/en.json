@@ -1,7 +1,13 @@
 {
   "HomePage": {
     "title": "Hello world!",
-    "subtitle": "Welcome to my blog"
+    "subtitle": "Welcome to my blog",
+    "greeting": "I'm",
+    "intro_start": "A frontend developer and a ",
+    "t_shaped": "T-shaped person",
+    "t_shaped_desc": "Someone with deep knowledge in one area (the vertical bar) and a broad base of general supporting knowledge in other areas (the horizontal bar).",
+    "intro_end": " on a path of continuous learning.",
+    "read_blog": "Read Blog"
   },
   "Nav": {
     "home": "Home",

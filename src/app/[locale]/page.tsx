@@ -1,22 +1,17 @@
-import { useTranslations } from 'next-intl';
+import { Hero } from "@/components/home/hero";
+import { setRequestLocale } from "next-intl/server";
 
-export default function HomePage() {
-  const t = useTranslations('HomePage');
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4 p-24">
-      <h1 className="text-4xl font-bold">{t('title')}</h1>
-      <p className="text-xl text-muted-foreground">{t('subtitle')}</p>
-      
-      <div className="mt-8 flex gap-4">
-        {/* Здесь будут наши переключатели тем и языка */}
-        <div className="rounded border p-4">
-          Placeholder: Theme Switcher
-        </div>
-        <div className="rounded border p-4">
-           Placeholder: Lang Switcher
-        </div>
-      </div>
-    </div>
+    <main className="flex min-h-screen flex-col">
+      <Hero />
+    </main>
   );
 }
